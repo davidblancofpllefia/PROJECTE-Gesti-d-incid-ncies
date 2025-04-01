@@ -1,8 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../utils/usercontext";
 
 const Header = () => {
   const navigate = useNavigate();
+  const { user, logoutUser } = useUserContext();
 
   return (
     <nav className="navbar navbar-light bg-light">
@@ -14,7 +16,14 @@ const Header = () => {
           <button className="btn btn-secondary ms-2" onClick={() => navigate("/registro")}>REGISTRO</button>
         </div>
         <div>
-          <span>administrador@fpllefia.com</span>
+          {user ? (
+            <div>
+              <span>{user.email}</span>
+              <button className="btn btn-danger ms-2" onClick={logoutUser}>Logout</button>
+            </div>
+          ) : (
+            <span>administrador@fpllefia.com</span>
+          )}
         </div>
       </div>
     </nav>
@@ -22,4 +31,5 @@ const Header = () => {
 };
 
 export default Header;
+
 

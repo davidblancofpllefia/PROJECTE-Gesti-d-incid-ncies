@@ -1,21 +1,67 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../utils/usercontext";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const { loginUser } = useUserContext();
+  const navigate = useNavigate();
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!email || !password) {
+      setError("Por favor, ingresa un correo electrónico y una contraseña.");
+      return;
+    }
+  
+    const usuaris = JSON.parse(localStorage.getItem("dades_usuaris")) || [];
+    const usuari = usuaris.find((u) => u.email === email && u.password === password);
+  
+    if (usuari) {
+      loginUser(usuari);
+      navigate("/panel");
+    } else {
+      setError("Correo electrónico o contraseña incorrectos.");
+    }
+  };
+  
+
   return (
     <div className="pt-5">
       <h1 className="w-100 text-center">Login</h1>
-      <form className="form p-4 border shadow mt-5 mx-auto" style={{ width: "400px" }}>
+      <form onSubmit={handleSubmit} className="form p-4 border shadow mt-5 mx-auto" style={{ width: "400px" }}>
         <label htmlFor="email" className="mt-2 form-label">User: </label>
-        <input type="text" className="form-control" placeholder="usuario@mail.com" />
+        <input
+          type="text"
+          id="email"
+          className="form-control"
+          placeholder="usuario@mail.com"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
 
-        <label htmlFor="pass" className="mt-2 form-label">Contraseña: </label>
-        <input type="password" className="form-control" />
+        <label htmlFor="password" className="mt-2 form-label">Contraseña: </label>
+        <input
+          type="password"
+          id="password"
+          className="form-control"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
 
-        <button type="submit" className="mt-4 w-100 btn btn-primary">Entrar</button>
+        {error && <div className="text-danger mt-2">{error}</div>}
+
+        <button type="submit" className="mt-4 w-100 btn btn-primary">
+          Entrar
+        </button>
       </form>
     </div>
   );
 };
 
 export default Login;
+
+
 
