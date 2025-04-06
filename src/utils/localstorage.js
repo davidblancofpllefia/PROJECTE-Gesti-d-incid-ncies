@@ -8,8 +8,14 @@ export const initLocalStorage = () => {
   }
 
   if (!localStorage.getItem("dades_usuaris")) {
-    localStorage.setItem("dades_usuaris", JSON.stringify([]));
+    const usuarisDePrueba = [
+      { email: "usuario@dominio.com", password: "12345" }
+    ];
+    localStorage.setItem("dades_usuaris", JSON.stringify(usuarisDePrueba));
   }
 };
+
+
+
 
   

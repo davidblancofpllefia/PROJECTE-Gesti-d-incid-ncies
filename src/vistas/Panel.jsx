@@ -13,6 +13,24 @@ const Panel = () => {
     setTiquetsResolts(resolts);
   }, []);
 
+  const marcarResolt = (id) => {
+    const tiquets = JSON.parse(localStorage.getItem("dades_tiquets")) || [];
+    const actualitzats = tiquets.map(t =>
+      t.id === id ? { ...t, resuelto: true, fechaResuelto: new Date().toISOString().split('T')[0] } : t
+    );
+    localStorage.setItem("dades_tiquets", JSON.stringify(actualitzats));
+    setTiquetsPendents(actualitzats.filter(t => !t.resuelto));
+    setTiquetsResolts(actualitzats.filter(t => t.resuelto));
+  };
+
+  const eliminarTiquet = (id) => {
+    const tiquets = JSON.parse(localStorage.getItem("dades_tiquets")) || [];
+    const actualitzats = tiquets.filter(t => t.id !== id);
+    localStorage.setItem("dades_tiquets", JSON.stringify(actualitzats));
+    setTiquetsPendents(actualitzats.filter(t => !t.resuelto));
+    setTiquetsResolts(actualitzats.filter(t => t.resuelto));
+  };
+
   return (
     <div className="container mt-4">
       <h1>Administración de incidencias</h1>
@@ -28,6 +46,7 @@ const Panel = () => {
             <th>Ordenador</th>
             <th>Descripción</th>
             <th>Alumno</th>
+            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -40,12 +59,15 @@ const Panel = () => {
               <td>{t.ordenador}</td>
               <td>{t.descripcion}</td>
               <td>{t.alumno}</td>
+              <td>
+                <button className="btn btn-success btn-sm me-2" onClick={() => marcarResolt(t.id)}>Resolver</button>
+                <button className="btn btn-danger btn-sm" onClick={() => eliminarTiquet(t.id)}>Eliminar</button>
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
 
-      {/* Tabla de Tickets Resueltos */}
       <h2 className="mt-5">Tiquets Resolts</h2>
       <table className="table mt-4">
         <thead>
