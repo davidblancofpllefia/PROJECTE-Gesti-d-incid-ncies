@@ -5,6 +5,7 @@ import Login from "./vistas/Login";
 import Panel from "./vistas/Panel";
 import Registro from "./vistas/Registro";
 import { initLocalStorage } from "./utils/localstorage";
+import { UserProvider } from "./utils/usercontext";
 
 function App() {
   useEffect(() => {

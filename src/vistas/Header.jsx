@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useUserContext } from "../utils/usercontext";
 
 const Header = () => {
   const navigate = useNavigate();
