@@ -9,26 +9,21 @@ const Login = () => {
   
   const handleSubmit = (e) => {
     e.preventDefault();
-  
-    // Verifica que los campos no estén vacíos
+
     if (!email || !password) {
       setError("Por favor, ingresa un correo electrónico y una contraseña.");
       return;
     }
   
-    // Recupera los usuarios guardados en localStorage
     const usuaris = JSON.parse(localStorage.getItem("dades_usuaris")) || [];
     
-    // Busca un usuario que coincida con el correo y la contraseña proporcionados
     const usuari = usuaris.find((usuari) => usuari.email === email && usuari.password === password);
     
-    // Si el usuario existe, guardamos su información en localStorage y redirigimos
     if (usuari) {
-      setError("");  // Limpiar el error si la autenticación es exitosa
-      localStorage.setItem("user", JSON.stringify(usuari));  // Guardamos el usuario en localStorage
-      navigate("/panel");  // Redirige al panel
+      setError("");  
+      localStorage.setItem("user", JSON.stringify(usuari));  
+      navigate("/panel");  
     } else {
-      // Si el correo o la contraseña no son correctos, muestra un error
       setError("Correo electrónico o contraseña incorrectos.");
     }
   };
