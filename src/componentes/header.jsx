@@ -29,7 +29,7 @@ const Header = () => {
               <Link to="/Panel" className="btn btn-light fw-bold px-4 py-2 mx-2 shadow-sm">Panel</Link>
 
               {user.rol === "admin" && (
-                <Link to="/adminUsuarios" className="btn btn-warning mx-2">Admin</Link>
+                <Link to="/adminUsuarios" className="btn btn-primary fw-bold shadow px-4 py-2 mx-2">Admin</Link>
               )}
 
               <span className="mx-2"> {user.email}</span>
