@@ -44,7 +44,7 @@ const IniciarSesion = () => {
           <input 
             type="email"
             className="form-control"
-            placeholder="admin@gmail.com"
+            placeholder="usuario@gmail.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -54,7 +54,6 @@ const IniciarSesion = () => {
           <input 
             type="password"
             className="form-control"
-            placeholder="12345"
             value={contrasena}
             onChange={(e) => setContrasena(e.target.value)}
             required
