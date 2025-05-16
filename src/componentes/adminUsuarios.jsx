@@ -2,10 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useUser } from '../componentes/UserContext'; // Importamos el contexto del usuario
 import { useNavigate } from 'react-router-dom';
 
-//Si no es admin, redirigir a la página de inicio
-// {user && user.rol !== 'admin' && (
-//   <Navigate to="/" />
-// )}
+
 
 const AdminUsuarios = () => {
   const [datosUsuarios, setDatosUsuarios] = useState([]);
