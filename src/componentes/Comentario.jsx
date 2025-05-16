@@ -16,10 +16,9 @@ const Comentario = ({ agregarComentario, codigoTiquet }) => {
                 codigo: codigoTiquet,
             };
 
-            // Agregar el nuevo comentario
+
             agregarComentario(nuevoComentario);
 
-            // Limpiar el campo de texto
             setTexto('');
         } else {
             alert('Por favor, complete todos los campos.');

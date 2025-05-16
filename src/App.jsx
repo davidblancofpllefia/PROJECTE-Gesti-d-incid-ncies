@@ -10,17 +10,13 @@ import Tiquet from './pages/Tiquet.jsx';
 import EditTiquet from './pages/editTiquet.jsx';
 import AdminUsuarios from './componentes/adminUsuarios.jsx';
 
-
-
 const App = () => {
   return (
     <UserProvider>
     <Router>
        <Header/>
       <Routes>
-  
         <Route path="/" element={<IniciSessio />} />
-        
         <Route path="/registre" element={<Registre />} />
         <Route path="/editTiquet/:codigo" element={<EditTiquet />} />
         <Route path="/comentarios" element={<Comentarios />} />

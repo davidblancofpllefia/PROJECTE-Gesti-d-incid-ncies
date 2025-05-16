@@ -4,6 +4,6 @@ export const obtenerComentarios = () => {
 
 export const guardarComentario = (nuevoComentario) => {
     const comentarios = obtenerComentarios();
-    comentarios.push(nuevoComentario); // Agrega el nuevo comentario sin borrar los previos
+    comentarios.push(nuevoComentario);
     localStorage.setItem('comentarios', JSON.stringify(comentarios));
 };

@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useUser } from '../componentes/UserContext'; // Importamos el contexto del usuario
+import { useUser } from '../componentes/UserContext'; 
 
 const IniciarSesion = () => {
   const [email, setEmail] = useState('');
   const [contrasena, setContrasena] = useState('');
   const [mensaje, setMensaje] = useState('');
-  const { setUser } = useUser(); // Accedemos a setUser desde el contexto
+  const { setUser } = useUser(); 
   const navigate = useNavigate();
 
-  // Obtener usuarios del localStorage
+
   const obtenerUsuarios = () => {
     return JSON.parse(localStorage.getItem('datosUsuarios')) || [];
   };
@@ -20,7 +20,7 @@ const IniciarSesion = () => {
 
     const usuariosExistentes = obtenerUsuarios();
 
-    // Verificar si el usuario existe
+
     const usuarioAutenticado = usuariosExistentes.find((usuario) => usuario.email === email && usuario.contrasena === contrasena);
     
     if (!usuarioAutenticado) {
@@ -28,49 +28,43 @@ const IniciarSesion = () => {
       return;
     }
 
-    // Guardar usuario en el contexto y en localStorage
+
     setUser(usuarioAutenticado);
     localStorage.setItem('usuario', JSON.stringify(usuarioAutenticado));
 
-    // Redirigir al panel
     navigate('/'); 
   };
 
   return (
 <main className="container mt-5">
-  <div className="pt-5 d-flex flex-column align-items-center">
-    <h1 className="mb-4 text-primary">Bienvenido</h1>
-    <form
-      onSubmit={gestionarLogin}
-      className="p-5 rounded-4 shadow-sm bg-light"
-      style={{ width: '380px', border: '1px solid #dee2e6' }}
-    >
-      <label htmlFor="email" className="form-label fw-semibold">Correo Electrónico</label>
-      <input
-        type="email"
-        className="form-control mb-3"
-        placeholder="ejemplo@correo.com"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-      />
+      <div className="pt-5">
+        <h1 className="w-100 text-center">Iniciar Sesión</h1>
+        <form onSubmit={gestionarLogin} className="form p-4 border shadow mt-5 mx-auto" style={{ width: '400px' }}>
+          <label htmlFor="email" className="mt-2 form-label">Usuario:</label>
+          <input 
+            type="email"
+            className="form-control"
+            placeholder="usuario@gmail.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
 
-      <label htmlFor="pass" className="form-label fw-semibold">Contraseña</label>
-      <input
-        type="password"
-        className="form-control mb-4"
-        placeholder="••••••••"
-        value={contrasena}
-        onChange={(e) => setContrasena(e.target.value)}
-        required
-      />
+          <label htmlFor="pass" className="mt-2 form-label">Contraseña:</label>
+          <input 
+            type="password"
+            className="form-control"
+            value={contrasena}
+            onChange={(e) => setContrasena(e.target.value)}
+            required
+          />
 
-      <button type="submit" className="btn btn-outline-primary w-100">Acceder</button>
-    </form>
+          <input type="submit" className="mt-4 w-100 btn btn-primary" value="Iniciar Sesión" />
+        </form>
 
-    {mensaje && <p className="text-muted mt-3">{mensaje}</p>}
-  </div>
-</main>
+        {mensaje && <p className="text-center mt-3">{mensaje}</p>}
+      </div>
+    </main>
 
   );
 };

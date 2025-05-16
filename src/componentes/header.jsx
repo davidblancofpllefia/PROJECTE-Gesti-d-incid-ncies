@@ -26,14 +26,13 @@ const Header = () => {
         <div>
           {user ? (
             <>
-              <Link to="/Panel" className="btn btn-secondary mx-2">Panel</Link>
+              <Link to="/Panel" className="btn btn-light fw-bold px-4 py-2 mx-2 shadow-sm">Panel</Link>
 
-              {/* Si el usuario es admin, mostrar enlace al panel de administración */}
               {user.rol === "admin" && (
                 <Link to="/adminUsuarios" className="btn btn-warning mx-2">Admin</Link>
               )}
 
-              <span className="mx-2">Hola, {user.email}</span>
+              <span className="mx-2"> {user.email}</span>
               <button className="btn btn-danger mx-2" onClick={handleLogout}>Cerrar Sesión</button>
             </>
           ) : (

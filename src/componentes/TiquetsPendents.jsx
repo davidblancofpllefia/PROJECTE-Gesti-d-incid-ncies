@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useUser } from '../componentes/UserContext'; // Importar el contexto de usuario
+import { useUser } from '../componentes/UserContext'; 
 
 const tenerTiquets = () => JSON.parse(localStorage.getItem('dades_tiquets')) || [];
 
@@ -21,7 +21,7 @@ const eliminarTiquet = (codigo, setTiquetsPendient) => {
 const TiquetsPendient = () => {
     const [tiquetsPendient, setTiquetsPendient] = useState([]);
     const navigate = useNavigate();
-    const { user } = useUser(); // Obtener el usuario en sesión
+    const { user } = useUser(); 
 
     useEffect(() => {
         setTiquetsPendient(tenerTiquets().filter(tiquet => tiquet.estat === 'pendent'));

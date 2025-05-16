@@ -1,22 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { useUser } from '../componentes/UserContext';
-import { useNavigate, useParams } from 'react-router-dom'; // Importa useNavigate y useParams
+import { useNavigate, useParams } from 'react-router-dom';
 
 const EditTiquet = () => {
-  const { user } = useUser(); // Obtener usuario desde el contexto
+  const { user } = useUser(); 
   const [formData, setFormData] = useState({
     aula: '',
     grupo: '',
     ordenador: '',
     descripcion: '',
-    alumno: user?.email || '', // Solo mostrar email
+    alumno: user?.email || '', 
   });
 
   const [error, setError] = useState('');
   const [dadesTiquets, setDadesTiquets] = useState([]);
-  const navigate = useNavigate(); // Inicializa el hook de navegación
-  const { codigo } = useParams(); // Obtiene el 'codigo' del tiquet desde los parámetros de la URL
-
+  const navigate = useNavigate(); 
+  const { codigo } = useParams(); 
   useEffect(() => {
     const tiquetsGuardados = JSON.parse(localStorage.getItem('dades_tiquets')) || [];
     setDadesTiquets(tiquetsGuardados);
@@ -44,13 +43,11 @@ const EditTiquet = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Validar que todos los campos sean completados
     if (!formData.aula || !formData.grupo || !formData.ordenador || !formData.descripcion) {
       setError('Todos los campos son obligatorios.');
       return;
     }
 
-    // Actualizar el tiquet en el almacenamiento local
     const nuevosTiquets = dadesTiquets.map((tiquet) => {
       if (tiquet.codigo === parseInt(codigo)) {
         return {
@@ -70,7 +67,7 @@ const EditTiquet = () => {
     console.log('Tiquet editado:', formData);
 
     setError('');
-    navigate('/panel'); // Redirigir al panel después de guardar los cambios
+    navigate('/panel'); 
   };
 
   return (

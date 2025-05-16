@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { useUser } from '../componentes/UserContext';
-import { useNavigate } from 'react-router-dom'; // Importa useNavigate
+import { useNavigate } from 'react-router-dom'; 
 
 const Tiquet = () => {
-  const { user } = useUser(); // Obtener usuario desde el contexto
+  const { user } = useUser(); 
   const [formData, setFormData] = useState({
     aula: user?.aula || '',
     grupo: user?.grupo || '',
     ordenador: '',
     descripcion: '',
-    alumno: user?.email || '', // Solo mostrar email
+    alumno: user?.email || '', 
   });
 
   const [error, setError] = useState('');
   const [dadesTiquets, setDadesTiquets] = useState([]);
-  const navigate = useNavigate(); // Inicializa el hook de navegación
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     const tiquetsGuardados = JSON.parse(localStorage.getItem('dades_tiquets')) || [];
@@ -22,7 +22,6 @@ const Tiquet = () => {
   }, []);
 
   useEffect(() => {
-    // Actualizar email, aula y grupo cuando cambie el usuario
     setFormData((prevData) => ({
       ...prevData,
       alumno: user?.email || '',
@@ -42,7 +41,6 @@ const Tiquet = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Para no saltear campos 
     if (!formData.aula || !formData.grupo || !formData.ordenador || !formData.descripcion || !formData.alumno) {
       setError('Todos los campos son obligatorios.');
       return;
@@ -54,7 +52,7 @@ const Tiquet = () => {
       grupo: formData.grupo,
       ordenador: formData.ordenador,
       descripcion: formData.descripcion,
-      alumno: formData.alumno, // Solo email
+      alumno: formData.alumno, 
       fecha: new Date().toLocaleDateString(),
       estat: 'pendent',
     };
@@ -66,17 +64,16 @@ const Tiquet = () => {
     console.log('Tiquet guardado:', nuevoTiquet);
 
     setFormData({
-      aula: "", // Mantener aula ingresada
-      grupo: "", // Mantener grupo ingresado
+      aula: "", 
+      grupo: "", 
       ordenador: '',
       descripcion: '',
-      alumno: formData.alumno, // Mantener email
+      alumno: formData.alumno, 
     });
 
     setError('');
 
-    // Redirigir al panel después de guardar el tiquet
-    navigate('/panel'); // Asegúrate de que '/panel' es la ruta del panel
+    navigate('/panel'); 
   };
 
   return (
@@ -106,7 +103,7 @@ const Tiquet = () => {
             name="aula"
             className="form-control"
             value={formData.aula}
-            onChange={handleChange} // Con esto hacemos q sea editable
+            onChange={handleChange} 
           />
         </div>
 
@@ -118,7 +115,7 @@ const Tiquet = () => {
             name="grupo"
             className="form-control"
             value={formData.grupo}
-            onChange={handleChange} // Ahora es editable
+            onChange={handleChange} 
           />
         </div>
 

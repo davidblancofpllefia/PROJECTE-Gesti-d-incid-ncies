@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useUser } from '../componentes/UserContext'; // Importamos el contexto del usuario
+import { useUser } from '../componentes/UserContext'; 
 import { useNavigate } from 'react-router-dom';
 
 
 
 const AdminUsuarios = () => {
   const [datosUsuarios, setDatosUsuarios] = useState([]);
-  const { user, setUser } = useUser(); // Accedemos al usuario en sesión
+  const { user, setUser } = useUser(); 
 
   useEffect(() => {
     const usuariosGuardados = JSON.parse(localStorage.getItem('datosUsuarios')) || [];
@@ -21,7 +21,7 @@ const AdminUsuarios = () => {
     setDatosUsuarios(usuariosActualizados);
     localStorage.setItem('datosUsuarios', JSON.stringify(usuariosActualizados));
 
-    // Si el usuario modificado es el que está en sesión, actualizarlo también
+
     if (user && user.email === email) {
       const usuarioActualizado = { ...user, rol: nuevoRol };
       setUser(usuarioActualizado);
