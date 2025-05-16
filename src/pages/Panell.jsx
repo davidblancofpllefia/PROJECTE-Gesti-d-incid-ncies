@@ -12,9 +12,7 @@ const Panell = () => {
           Crear Nuevo Tiquet
         </Link>
       </div>
-
       <TiquetsPendents />
-
       <TiquetsResolts />
 
     </main>

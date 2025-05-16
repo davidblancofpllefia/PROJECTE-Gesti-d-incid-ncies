@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { UserProvider } from "./componentes/UserContext";
-import IniciSessio from './pages/IniciSessio';
+import Login from './pages/Login';
 import Registre from './pages/Registre';
 import Panell from './pages/Panell';
 import Header from './componentes/header.jsx';
@@ -16,7 +16,7 @@ const App = () => {
     <Router>
        <Header/>
       <Routes>
-        <Route path="/" element={<IniciSessio />} />
+        <Route path="/" element={<Login />} />
         <Route path="/registre" element={<Registre />} />
         <Route path="/editTiquet/:codigo" element={<EditTiquet />} />
         <Route path="/comentarios" element={<Comentarios />} />

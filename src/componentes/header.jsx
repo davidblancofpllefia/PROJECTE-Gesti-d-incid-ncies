@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'; 
 import { Link, useNavigate } from 'react-router-dom';
-import { useUser } from '../componentes/UserContext'; 
+import { useUser } from './UserContext'; 
 
 const Header = () => {
   const { user, setUser } = useUser();
@@ -16,7 +16,7 @@ const Header = () => {
   const handleLogout = () => {
     setUser(null);
     localStorage.removeItem('usuario');
-    navigate('/IniciSessio');
+    navigate('/Login');
   };
 
   return (

@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useUser } from '../componentes/UserContext'; 
 import { useNavigate } from 'react-router-dom';
 
-
-
 const AdminUsuarios = () => {
   const [datosUsuarios, setDatosUsuarios] = useState([]);
   const { user, setUser } = useUser(); 

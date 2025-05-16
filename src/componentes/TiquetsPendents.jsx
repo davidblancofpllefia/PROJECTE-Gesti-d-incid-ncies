@@ -3,7 +3,6 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useUser } from '../componentes/UserContext'; 
 
 const tenerTiquets = () => JSON.parse(localStorage.getItem('dades_tiquets')) || [];
-
 const resolverTiquet = (codigo, setTiquetsPendient) => {
     const tiquets = tenerTiquets().map(tiquet => 
         tiquet.codigo === codigo ? { ...tiquet, estat: 'resolt' } : tiquet
@@ -11,13 +10,11 @@ const resolverTiquet = (codigo, setTiquetsPendient) => {
     localStorage.setItem('dades_tiquets', JSON.stringify(tiquets));
     setTiquetsPendient(tiquets.filter(tiquet => tiquet.estat === 'pendent'));
 };
-
 const eliminarTiquet = (codigo, setTiquetsPendient) => {
     const tiquets = tenerTiquets().filter(tiquet => tiquet.codigo !== codigo);
     localStorage.setItem('dades_tiquets', JSON.stringify(tiquets));
     setTiquetsPendient(tiquets.filter(tiquet => tiquet.estat === 'pendent'));
 };
-
 const TiquetsPendient = () => {
     const [tiquetsPendient, setTiquetsPendient] = useState([]);
     const navigate = useNavigate();
@@ -31,7 +28,6 @@ const TiquetsPendient = () => {
         localStorage.setItem('codigo_tiquet', codigo);
         navigate('/comentarios');
     };
-
     return (
         <div>
             <h2>Tiquets Pendientes</h2>
