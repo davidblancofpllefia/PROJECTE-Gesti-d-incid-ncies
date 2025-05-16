@@ -42,35 +42,41 @@ const Registro = () => {
   };
 
   return (
-    <main className="container mt-5">
-      <div className="pt-5">
-        <h1 className="w-100 text-center">Registro</h1>
-        <form onSubmit={gestionarRegistro} className="form p-4 border shadow mt-5 mx-auto" style={{ width: '400px' }}>
-          <label htmlFor="email" className="mt-2 form-label">Usuario:</label>
-          <input 
-            type="email"
-            className="form-control"
-            placeholder="usuario@mail.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-  
-          <label htmlFor="pass" className="mt-2 form-label">Contraseña:</label>
-          <input 
-            type="password"
-            className="form-control"
-            value={contrasena}
-            onChange={(e) => setContrasena(e.target.value)}
-            required
-          />
-  
-          <input type="submit" className="mt-4 w-100 btn btn-primary" value="Registrarse" />
-        </form>
+      <main className="container mt-5">
+  <div className="pt-5 d-flex flex-column align-items-center">
+    <h1 className="mb-4 text-success">Crear Cuenta</h1>
+    <form
+      onSubmit={gestionarRegistro}
+      className="p-5 rounded-3 bg-white shadow-sm border border-2"
+      style={{ width: '380px' }}
+    >
+      <label htmlFor="email" className="form-label fw-bold">Correo Electrónico</label>
+      <input
+        type="email"
+        className="form-control mb-3"
+        placeholder="tucorreo@ejemplo.com"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        required
+      />
 
-        {mensaje && <p className="text-center mt-3">{mensaje}</p>}
-      </div>
-    </main>
+      <label htmlFor="pass" className="form-label fw-bold">Crea una Contraseña</label>
+      <input
+        type="password"
+        className="form-control mb-4"
+        placeholder="Mínimo 6 caracteres"
+        value={contrasena}
+        onChange={(e) => setContrasena(e.target.value)}
+        required
+      />
+
+      <button type="submit" className="btn btn-success w-100">Registrarse</button>
+    </form>
+
+    {mensaje && <p className="mt-3 text-secondary text-center">{mensaje}</p>}
+  </div>
+</main>
+  
   );
 };
 
